@@ -9,6 +9,10 @@ In the project directory, you can run the project by:
 Runs the app in the development mode.<br>
 Server will listen to the request on port [http://localhost:5005]
 
+### `npm install`
+
+Installs all the dependencies.
+
 ## Project APIs
 the project basically has 4 APIs that will get the query from the client side
 
@@ -23,4 +27,3 @@ To upadate the selected item:<br>
 
 To delete the selected item:<br>
 `4. http://localhost:5005/api DELETE`
-
