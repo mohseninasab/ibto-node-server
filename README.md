@@ -13,6 +13,9 @@ Server will listen to the request on port [http://localhost:5005]
 
 Installs all the dependencies.
 
+## Database Documents
+project documents are in the `/database-docs` director.<br>
+
 ## Project APIs
 the project basically has 4 APIs that will get the query from the client side
 
