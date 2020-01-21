@@ -1,0 +1,1463 @@
+{
+	"info": {
+		"_postman_id": "70eded67-4940-4e10-a8df-f23da3c5171e",
+		"name": "AsanTransfer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"a@a.a\",\n\t\"password\": \"a\",\n\t\"firstName\": \"a\",\n\t\"lastName\": \"a\",\n\t\"mobile\": \"0\",\n\t\"nationality\": \"IR\"\n}"
+						},
+						"url": {
+							"raw": "{{serverAddress}}/api/auth/register",
+							"host": [
+								"{{serverAddress}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2551980c-7bfd-418c-878e-272f40837b09",
+								"exec": [
+									"pm.test(\"Status code 200\", function(){",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"set JWT environment\", function () {",
+									"    pm.environment.set(\"JWT\", pm.response.json().token);",
+									"});",
+									"",
+									"pm.test(\"set RT environment\", function () {",
+									"    pm.environment.set(\"RT\", pm.response.json().refreshToken);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "15164404-3106-49f0-b56e-421aaa06587e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"ali@ali.ali\",\n\t\"password\": \"ali\",\n\t\"emailll\": \"a@a.a\",\n\t\"passworddd\": \"a\",\n\t\"emaill\": \"b@b.b\",\n\t\"passwordd\": \"b\"\n}"
+						},
+						"url": {
+							"raw": "{{serverAddress}}/api/auth/login",
+							"host": [
+								"{{serverAddress}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "loginWithToken",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{RT}}"
+							}
+						],
+						"url": {
+							"raw": "{{serverAddress}}/api/auth/loginWithToken",
+							"host": [
+								"{{serverAddress}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"loginWithToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logOut",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{RT}}"
+							}
+						],
+						"url": {
+							"raw": "{{serverAddress}}/api/auth/logOut",
+							"host": [
+								"{{serverAddress}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logOut"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "dashboard",
+			"item": [
+				{
+					"name": "currency",
+					"item": [
+						{
+							"name": "currency",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"test\",\n\t\"code\": \"TSD\"\n}"
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/currency/",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"currency",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/currency/5d75213e7ecb68742fbdef72",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"currency",
+										"5d75213e7ecb68742fbdef72"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Rial\"\n}"
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/currency/5d75213e7ecb68742fbdef72",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"currency",
+										"5d75213e7ecb68742fbdef72"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/currency/all",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"currency",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/currency/5d8a34da99cfa4f2b81a02ce",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"currency",
+										"5d8a34da99cfa4f2b81a02ce"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "user",
+					"item": [
+						{
+							"name": "WhoAmI",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}"
+									}
+								],
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/user/whoAmI",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"user",
+										"whoAmI"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "userInfo",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/user/5d6cbbdf04fc1049d206fb1b",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"user",
+										"5d6cbbdf04fc1049d206fb1b"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "all",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/user/all",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"user",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"lastName\": \"b\",\n        \"firstName\": \"b\",\n        \"password\": \"b\"\n}"
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/user/5d8a43473a5d58f62a447559",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"user",
+										"5d8a43473a5d58f62a447559"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "user",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"c@c.v\",\n\t\"password\": \"v\",\n\t\"firstName\": \"v\",\n\t\"lastName\": \"v\",\n\t\"mobile\": \"1\",\n\t\"role\": \"client\"\n}"
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/user/",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"user",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/user/5d8a43473a5d58f62a447559",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"user",
+										"5d8a43473a5d58f62a447559"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "account",
+					"item": [
+						{
+							"name": "account",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"userId\": \"5d6cbbc904fc1049d206fb1a\",\n\t\"currencyId\": \"5d95d4ccbd54735ead7ca4de\"\n}"
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/account/",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"account",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "myAccounts",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/account/",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"account",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/account/5de124c0bd3ae940b1da6a99",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"account",
+										"5de124c0bd3ae940b1da6a99"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/account/all",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"account",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/account/5de12977c281504287837767",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"account",
+										"5de12977c281504287837767"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "exchange",
+					"item": [
+						{
+							"name": "exchange",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"firstCurrency\": \"5d75213e7ecb68742fbdef72\",\n    \"secondCurrency\": \"5d75213e7ecb68742fbdef72\",\n    \"proportionFirstToSecond\": 0.1,\n    \"proportionSecondToFirst\": 10,\n    \"internalTransferForHimself\": 0,\n    \"internalTransferForOthers\": 0,\n    \"externalTransfer\": 1,\n    \"active\": \"true\"\n}"
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/exchange",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"exchange"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/exchange/5dc247e1c0b8b02eda129d23",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"exchange",
+										"5dc247e1c0b8b02eda129d23"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "allActive",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"type": "text",
+										"value": "{{JWT}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/exchange/allActive",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"exchange",
+										"allActive"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"type": "text",
+										"value": "{{JWT}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/exchange/all",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"exchange",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/exchange/5dc2479a0f34a42ea792fc1c",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"exchange",
+										"5dc2479a0f34a42ea792fc1c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"proportionFirstToSecond\": 1,\n\t\"proportionSecondToFirst\": 1,\n    \"internalTransferForHimself\": 0,\n    \"internalTransferForOthers\": 0,\n    \"externalTransfer\": 1,\n\t\"active\": \"true\"\n}"
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/exchange/5dc247e1c0b8b02eda129d23",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"exchange",
+										"5dc247e1c0b8b02eda129d23"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "transaction",
+					"item": [
+						{
+							"name": "transaction",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"source\": \"5da987e39f09c69179f093b6\",\n    \"destination\": \"5da987cf9f09c69179f093b5\",\n    \"internal\": true,\n    \"destinationTransfer\": 130\n}"
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/transaction",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"transaction"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"type": "text",
+										"value": "{{JWT}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/transaction/all",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"transaction",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "allUserTransactions",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"type": "text",
+										"value": "{{JWT}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/transaction/all/5d6cbbc904fc1049d206fb1a",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"transaction",
+										"all",
+										"5d6cbbc904fc1049d206fb1a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "authorization",
+										"type": "text",
+										"value": "{{JWT}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/transaction/5db8a152da04ca67293482a9",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"transaction",
+										"5db8a152da04ca67293482a9"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "accountBook",
+					"item": [
+						{
+							"name": "accountBook",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"type": "text",
+										"value": "{{JWT}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"userId\": \"5d8a427caebd0ef5f64c7a27\",\n\t\"currency\": \"5d95d4ccbd54735ead7ca4de\",\n\t\"accountOwnerName\": \"ali mohammad \",\n\t\"iban\": \"qw33 ASDF 0044 2344 3433 431\",\n\t\"bic\": \" REVOgB44\",\n\t\"nikName\": \" sAdeGhi\",\n\t\"type\": \"shaba\"\n}"
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/accountbook/",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"accountbook",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/accountbook/5de12c5aaf26514347d5efbd",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"accountbook",
+										"5de12c5aaf26514347d5efbd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"type": "text",
+										"value": "{{JWT}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/accountbook/all",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"accountbook",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/accountbook/5dc18ad43d92272bd31a43df",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"accountbook",
+										"5dc18ad43d92272bd31a43df"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "myAccountBook",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"type": "text",
+										"value": "{{JWT}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/accountbook/",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"accountbook",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{JWT}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"active\": false\n}"
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/accountbook/5dc18ad43d92272bd31a43df",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"accountbook",
+										"5dc18ad43d92272bd31a43df"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "allUserAccountBooks",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"type": "text",
+										"value": "{{JWT}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{serverAddress}}/api/dashboard/accountbook/all/5d6cbbc904fc1049d206fb1a",
+									"host": [
+										"{{serverAddress}}"
+									],
+									"path": [
+										"api",
+										"dashboard",
+										"accountbook",
+										"all",
+										"5d6cbbc904fc1049d206fb1a"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "addSuperAdmin",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t  \"firstName\":\"Ali\",\n      \"lastName\": \"Alavi\",\n      \"email\": \"ali@ali.ali\",\n      \"password\": \"ali\",\n      \"mobile\": \"09121234321\"\n}"
+				},
+				"url": {
+					"raw": "{{serverAddress}}/api/addSuperAdmin",
+					"host": [
+						"{{serverAddress}}"
+					],
+					"path": [
+						"api",
+						"addSuperAdmin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{serverAddress}}/api/test",
+					"host": [
+						"{{serverAddress}}"
+					],
+					"path": [
+						"api",
+						"test"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "08139f22-b6ec-4373-bb31-aeca58ce9a70",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "5fa0c8d5-4faf-4e7a-a317-067b01f3a6c9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

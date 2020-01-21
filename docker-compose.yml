@@ -1,0 +1,30 @@
+version: '3'
+
+networks:
+  web:
+    external: true
+  internal:
+    external: true
+
+services:
+         
+  at:
+    container_name: at
+    restart: always
+    build: .
+    environment:
+      - DATABASE_ADDRESS=mongodb://mongo:27017/at
+      - CROSS=['http://api.asantransfer.ir', 'https://api.asantransfer.ir','http://panel.asantransfer.ir', 'https://panel.asantransfer.ir']
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.at.rule=Host(`api.asantransfer.ir`)"
+      - "traefik.http.routers.at-https.rule=Host(`api.asantransfer.ir`)"
+      - "traefik.http.routers.at-https.tls=true"
+      - "traefik.http.routers.at-https.tls.certresolver=futechresolver"
+      - "traefik.http.routers.at.middlewares=redirect-to-https"
+    volumes:
+      - '/opt/at/public:/opt/at/public'
+    networks:
+      - web
+      - internal

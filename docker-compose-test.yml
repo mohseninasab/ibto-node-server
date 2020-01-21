@@ -1,0 +1,30 @@
+version: '3'
+
+networks:
+  web:
+    external: true
+  internal:
+    external: true
+
+services:
+          
+  at-test:
+    container_name: at-test
+    restart: always
+    build: .
+    environment:
+      - DATABASE_ADDRESS=mongodb://mongo:27017/at-test
+      - CROSS=['http://api.at.fudevgroup.ir', 'https://api.at.fudevgroup.ir','http://panel.at.fudevgroup.ir', 'https://panel.at.fudevgroup.ir']
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.at-test.rule=Host(`api.at.fudevgroup.ir`)"
+      - "traefik.http.routers.at-test-https.rule=Host(`api.at.fudevgroup.ir`)"
+      - "traefik.http.routers.at-test-https.tls=true"
+      - "traefik.http.routers.at-test-https.tls.certresolver=futechresolver"
+      - "traefik.http.routers.at-test.middlewares=redirect-to-https"
+    volumes:
+      - '/opt/at-test/public:/opt/at/public'
+    networks:
+      - web
+      - internal

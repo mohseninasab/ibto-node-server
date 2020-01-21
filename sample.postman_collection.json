@@ -1,0 +1,122 @@
+{
+	"variables": [],
+	"info": {
+		"name": "sample",
+		"_postman_id": "e5ae84c5-9254-2087-5659-3f4c1f4ccd26",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:5005/api/register",
+			"request": {
+				"url": "localhost:5005/api/register",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userName\": \"Ramin\",\n\t\"password\": 12345678\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:5005/api/login",
+			"request": {
+				"url": "localhost:5005/api/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userName\": \"Ramin\",\n\t\"password\": \"12345678\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:5005/api/whoAmI",
+			"request": {
+				"url": "localhost:5005/api/whoAmI",
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVkNTQ1MGY4N2UzMjA2MDdkOGQ3YzdlOCIsInJvbGUiOiJ1c2VyIiwidG9rZW5DcmVhdGlvbkRhdGUiOjE1NjU4MDcxOTg2MjV9LCJpYXQiOjE1NjU4MDcxOTgsImV4cCI6MTU2NjE2NzE5OH0.qdKdoqoHiTcEl8VKHUsscZnv8NoBpLXc8NG6YVwuW6I",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:5005/api/loginWithToken",
+			"request": {
+				"url": "localhost:5005/api/loginWithToken",
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVuaXF1ZUNvZGUiOiI3ZDliMmU5Ny0wMjc0LTRkODktYTA0Mi0yN2IyMzlhMzYxOTUifSwiaWF0IjoxNTY1ODA3MTk4fQ.jvEen0aqafkClJ72GgQ0KmzDXl3vnPYeXf49QPmWbq0",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:5005/api/logOut",
+			"request": {
+				"url": "localhost:5005/api/logOut",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVuaXF1ZUNvZGUiOiI3ZDliMmU5Ny0wMjc0LTRkODktYTA0Mi0yN2IyMzlhMzYxOTUifSwiaWF0IjoxNTY1ODA3MTk4fQ.jvEen0aqafkClJ72GgQ0KmzDXl3vnPYeXf49QPmWbq0",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:5005/api/addSuperAdmin",
+			"request": {
+				"url": "localhost:5005/api/addSuperAdmin",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t  \"firstName\":\"Ali\",\n      \"lastName\": \"Davari\",\n      \"userName\": \"AliDavari\",\n      \"password\": \"123456789\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,9 @@
+.idea
+node_modules
+.vscode
+.DS_Store
+package-lock.json
+server.iml
+npm-debug.log
+public/documents/uploads/
+document
